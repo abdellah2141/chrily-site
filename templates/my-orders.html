@@ -1,54 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>طلباتي - شريلي CHRILY</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; direction: rtl; background: #f8f9fa; margin: 0; padding: 0; }
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 { text-align: center; color: #28a745; }
-    .order {
-      display: flex;
-      align-items: center;
-      margin: 15px 0;
-      padding: 10px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      background: #fcfcfc;
-    }
-    .order img {
-      width: 100px;
-      border-radius: 6px;
-      margin-left: 15px;
-    }
-    .order-info {
-      flex: 1;
-    }
-  </style>
-</head>
+<head><meta charset="UTF-8"><title>طلباتي</title></head>
 <body>
-  <div class="container">
-    <h2>طلباتي المرتبطة بالهاتف: {{ phone }}</h2>
-    {% if orders %}
+  <h2>الطلبات المرتبطة بالهاتف: {{ phone }}</h2>
+  {% if orders %}
+    <ul>
       {% for order in orders %}
-        <div class="order">
-          <img src="/static/uploads/{{ order.filename }}">
-          <div class="order-info">
-            <strong>وسيلة الدفع:</strong> {{ order.method }}
-          </div>
-        </div>
+        <li>
+          <img src="/static/uploads/{{ order.filename }}" width="100"><br>
+          وسيلة الدفع: {{ order.method }}<br>
+          تاريخ الطلب: {{ order.date }}<br>
+          الحالة: جاري المعالجة
+        </li>
       {% endfor %}
-    {% else %}
-      <p style="text-align: center;">لا توجد طلبات محفوظة مرتبطة بهذا الرقم.</p>
-    {% endif %}
-  </div>
+    </ul>
+  {% else %}
+    <p>لا توجد طلبات.</p>
+  {% endif %}
 </body>
 </html>
