@@ -33,10 +33,7 @@ def admin_panel():
             if file.lower().endswith((".png", ".jpg", ".jpeg")):
                 parts = file.split("__")
                 method = parts[0] if len(parts) > 1 else "غير معروف"
-                import time
-                timestamp = os.path.getmtime(os.path.join(upload_dir, file))
-                date_str = time.strftime('%Y-%m-%d %H:%M', time.localtime(timestamp))
-                orders.append({'filename': file, 'method': method, 'date': date_str})
+                orders.append({'filename': file, 'method': method})
     return render_template("admin.html", orders=orders)
 
 @app.route("/api/fetch", methods=["POST"])
@@ -140,8 +137,5 @@ def my_orders():
             if phone in file:  # ربط الطلبات بالهاتف المدخل
                 parts = file.split("__")
                 method = parts[0] if len(parts) > 1 else "غير معروف"
-                import time
-                timestamp = os.path.getmtime(os.path.join(upload_dir, file))
-                date_str = time.strftime('%Y-%m-%d %H:%M', time.localtime(timestamp))
-                orders.append({'filename': file, 'method': method, 'date': date_str})
+                orders.append({'filename': file, 'method': method})
     return render_template("my-orders.html", phone=phone, orders=orders)

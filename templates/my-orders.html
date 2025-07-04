@@ -32,9 +32,6 @@
     .order-info {
       flex: 1;
     }
-    .order-info p {
-      margin: 5px 0;
-    }
   </style>
 </head>
 <body>
@@ -45,9 +42,7 @@
         <div class="order">
           <img src="/static/uploads/{{ order.filename }}">
           <div class="order-info">
-            <p><strong>وسيلة الدفع:</strong> {{ order.method }}</p>
-            <p><strong>تاريخ الطلب:</strong> {{ order.date }}</p>
-            <p><strong>الحالة:</strong> جاري المعالجة</p>
+            <strong>وسيلة الدفع:</strong> {{ order.method }}
           </div>
         </div>
       {% endfor %}
